@@ -718,6 +718,7 @@ main {
 /* foto de cada formato */
 .shape-img {
     width: 100%;
+    height: auto;
     max-width: 150px;
     aspect-ratio: 3 / 4;
     object-fit: cover;
@@ -1176,11 +1177,14 @@ main {
         transform: none;
     }
 
+    /* miniatura com formato fixo (não estica junto com o texto) */
     .svc-photo {
-        width: 108px;
+        width: 112px;
         flex-shrink: 0;
-        aspect-ratio: auto;
-        min-height: 128px;
+        aspect-ratio: 4 / 5;
+        align-self: flex-start;
+        margin: 12px 0 12px 12px;
+        border-radius: 10px;
     }
 
     .photo-tag {
@@ -1810,17 +1814,23 @@ main {
     line-height: 1.7;
 }
 
-.course-cta .btn {
+.course-cta .btn,
+.hero-buttons-new .btn-primary,
+.cta-section .btn {
     box-shadow: 0 6px 0 #d94a7c, 0 10px 20px rgba(255, 107, 157, 0.35);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.course-cta .btn:hover {
+.course-cta .btn:hover,
+.hero-buttons-new .btn-primary:hover,
+.cta-section .btn:hover {
     transform: translateY(-3px);
     box-shadow: 0 9px 0 #d94a7c, 0 16px 28px rgba(255, 107, 157, 0.45);
 }
 
-.course-cta .btn:active {
+.course-cta .btn:active,
+.hero-buttons-new .btn-primary:active,
+.cta-section .btn:active {
     transform: translateY(4px);
     box-shadow: 0 2px 0 #d94a7c, 0 4px 10px rgba(255, 107, 157, 0.3);
 }
@@ -1867,6 +1877,128 @@ main {
     content: '';
     position: absolute;
     inset: -10px -5px;
+}
+
+/* ===== AVALIAÇÃO NO GOOGLE (aba Contato) ===== */
+.review-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    margin-top: 20px;
+    padding: 22px 20px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, rgba(255, 107, 157, 0.14), rgba(255, 107, 157, 0.04));
+    border: 1px solid rgba(255, 107, 157, 0.35);
+    color: var(--dark);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.review-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(255, 107, 157, 0.2);
+}
+
+.review-stars {
+    font-size: 22px;
+    letter-spacing: 2px;
+    color: #f5b301;
+    white-space: nowrap;
+}
+
+.review-text {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.review-text strong {
+    font-size: 16px;
+}
+
+.review-text span {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.5;
+}
+
+.review-btn {
+    align-self: stretch;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--primary);
+    padding: 10px 18px;
+    border-radius: 999px;
+    box-shadow: 0 4px 0 #d94a7c;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.review-card:hover .review-btn {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #d94a7c;
+}
+
+@media (max-width: 640px) {
+    .review-card {
+        padding: 20px 16px;
+    }
+}
+
+@media (hover: none) {
+    .review-card:hover { transform: none; }
+    .review-card:active { transform: scale(0.98); }
+}
+
+/* ===== BOTÕES DE AGENDAR E DO CURSO: PULSO + BRILHO + 3D ===== */
+.hero-buttons-new .btn-primary,
+.cta-section .btn,
+.course-cta .btn {
+    position: relative;
+    overflow: hidden;
+    padding: 14px 34px;
+    font-size: 14px;
+    border-radius: 10px;
+    animation: pulsoAgendar 2.2s ease-in-out infinite;
+}
+
+/* faixa de brilho que atravessa o botão */
+.hero-buttons-new .btn-primary::after,
+.cta-section .btn::after,
+.course-cta .btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -80%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+    transform: skewX(-20deg);
+    animation: brilhoAgendar 3s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* ao passar o mouse: para de pulsar, sobe e fica mais forte */
+.hero-buttons-new .btn-primary:hover,
+.cta-section .btn:hover,
+.course-cta .btn:hover {
+    animation: none;
+    background: #ff4d8a;
+}
+
+@keyframes pulsoAgendar {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.06); }
+}
+
+@keyframes brilhoAgendar {
+    0%, 55% { left: -80%; }
+    100% { left: 130%; }
 }
 
 /* ===== CONTACT ===== */
@@ -2200,7 +2332,7 @@ main {
 /* celulares bem pequenos (até 380px): foto do card um pouco menor */
 @media (max-width: 380px) {
     .svc-photo {
-        width: 92px;
+        width: 96px;
     }
 
     .svc-body {
