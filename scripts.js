@@ -161,10 +161,6 @@ function formatarPreco(valor, formato) {
 }
 
 function aplicarPrecos(precos) {
-    // o restante do curso é calculado sozinho: total menos o sinal
-    if (!isNaN(precos.curso_total) && !isNaN(precos.curso_sinal)) {
-        precos.curso_restante = precos.curso_total - precos.curso_sinal;
-    }
     document.querySelectorAll('[data-preco]').forEach(el => {
         const valor = precos[el.dataset.preco];
         if (typeof valor === 'number' && !isNaN(valor)) {

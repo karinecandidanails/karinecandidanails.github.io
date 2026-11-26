@@ -2001,6 +2001,249 @@ main {
     100% { left: 130%; }
 }
 
+/* ===== CURSOS: OS 3 CURSOS ===== */
+.cursos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: stretch;
+}
+
+.curso-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.curso-card:hover {
+    transform: translateY(-8px);
+    border-color: rgba(255, 107, 157, 0.5);
+    box-shadow: 0 18px 34px rgba(255, 107, 157, 0.2);
+}
+
+.curso-topo {
+    position: relative;
+    overflow: hidden;
+    padding: 28px 22px 24px;
+    text-align: center;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--primary), #ff4d8a);
+}
+
+/* brilho que atravessa o topo ao passar o mouse */
+.curso-topo::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -70%;
+    width: 45%;
+    height: 100%;
+    background: linear-gradient(105deg, transparent, rgba(255, 255, 255, 0.35), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.7s ease;
+    pointer-events: none;
+}
+
+.curso-card:hover .curso-topo::after {
+    left: 130%;
+}
+
+.curso-nivel {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.22);
+    margin-bottom: 10px;
+}
+
+.curso-topo h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    line-height: 1.2;
+    text-wrap: balance;
+}
+
+.curso-sub {
+    margin-top: 4px;
+    font-size: 14px;
+    opacity: 0.92;
+}
+
+.curso-corpo {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 22px 22px 24px;
+}
+
+.curso-desc {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.6;
+}
+
+.curso-corpo h4 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--primary);
+    margin-top: 4px;
+}
+
+/* conteúdo em "etiquetas" para ficar compacto */
+.curso-conteudo {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.curso-conteudo li {
+    font-size: 12px;
+    color: var(--dark);
+    background: rgba(255, 107, 157, 0.1);
+    padding: 5px 11px;
+    border-radius: 999px;
+}
+
+.curso-linha {
+    font-size: 14px;
+    color: var(--dark);
+}
+
+.curso-precos {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(255, 107, 157, 0.4);
+    display: grid;
+    gap: 8px;
+}
+
+.curso-precos div {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.curso-precos small {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--gray);
+}
+
+.curso-precos strong {
+    font-size: 19px;
+    color: var(--primary);
+    white-space: nowrap;
+}
+
+/* incluso e reserva */
+.curso-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 32px;
+}
+
+.curso-info {
+    background: var(--light);
+    border: 2px solid transparent;
+    border-radius: 14px;
+    padding: 24px;
+    transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.curso-info:hover {
+    transform: translateY(-4px);
+    background: var(--white);
+    border-color: rgba(255, 107, 157, 0.5);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.07);
+}
+
+.curso-info h4 {
+    font-size: 17px;
+    margin-bottom: 12px;
+}
+
+.curso-info ul {
+    list-style: none;
+}
+
+.curso-info li {
+    position: relative;
+    padding: 5px 0 5px 24px;
+    font-size: 14px;
+    color: var(--gray);
+}
+
+.curso-info li::before {
+    content: '✓';
+    position: absolute;
+    left: 2px;
+    color: var(--primary);
+    font-weight: 700;
+}
+
+.curso-info p {
+    font-size: 14px;
+    color: var(--gray);
+    line-height: 1.7;
+    margin-bottom: 8px;
+}
+
+@media (max-width: 960px) {
+    .cursos-grid {
+        grid-template-columns: 1fr;
+        max-width: 560px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .curso-info-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .curso-topo {
+        padding: 22px 18px 20px;
+    }
+
+    .curso-topo h3 {
+        font-size: 22px;
+    }
+
+    .curso-corpo,
+    .curso-info {
+        padding: 18px;
+    }
+}
+
+@media (hover: none) {
+    .curso-card:hover,
+    .curso-info:hover {
+        transform: none;
+    }
+
+    .curso-card:active,
+    .curso-info:active {
+        transform: scale(0.98);
+    }
+}
+
 /* ===== CONTACT ===== */
 .contact-layout {
     display: grid;
